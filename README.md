@@ -1,6 +1,6 @@
 # Appium Live Inspector (appium-live-inspector)
 
-An inspector to debug the Appium tests
+An inspector to help debug the Appium tests
 
 ## Idea
 While debugging the Appium tests, it would be easier when it is possible to inspect the app elements meanwhile.
