@@ -11,7 +11,6 @@ The Appium server provides 2 endpoints:
 GET /session/:session_id/source
 ```
 In a native context (iOS, Android, etc...) it will return the application hierarchy XML.
-The Appium server provides 2 endpoints:
 ```bash
 GET /session/:session_id/screenshot
 ```
