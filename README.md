@@ -2,6 +2,25 @@
 
 An inspector to debug the Appium tests
 
+## Idea
+While debugging the Appium tests, it would be easier when it is possible to inspect the app elements meanwhile.
+
+## How to
+The Appium server provides 2 endpoints:
+```bash
+GET /session/:session_id/source
+```
+In a native context (iOS, Android, etc...) it will return the application hierarchy XML.
+The Appium server provides 2 endpoints:
+```bash
+GET /session/:session_id/screenshot
+```
+Takes a screenshot of the viewport in a native context (iOS, Android).
+
+With those 2 endpoints, it is possible to build an UI-tool to inspect the app elements while debugging the Appium tests. The only parameter needs to be provided is the session-id of the running Appium test.
+## Troubleshooting
+Note that some platforms may have settings that prevent screenshots from being taken, for security reason. One such feature is the Android ```FLAG_SECURE``` layout parameter
+
 ## Install the dependencies
 ```bash
 npm install
