@@ -140,8 +140,8 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `Appium live inspector`,
-        short_name: `Appium live inspector`,
+        name: `Appium Live Inspector`,
+        short_name: `Appium Live Inspector`,
         description: `An inspector to debug the Appium tests`,
         display: 'standalone',
         orientation: 'portrait',

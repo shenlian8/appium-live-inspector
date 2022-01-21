@@ -1,4 +1,4 @@
-# Appium live inspector (appium-live-inspector)
+# Appium Live Inspector (appium-live-inspector)
 
 An inspector to debug the Appium tests
 
@@ -9,7 +9,7 @@ npm install
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
-quasar dev
+quasar dev -m electron
 ```
 
 ### Lint the files
@@ -19,7 +19,7 @@ npm run lint
 
 ### Build the app for production
 ```bash
-quasar build
+quasar build -m electron
 ```
 
 ### Customize the configuration
