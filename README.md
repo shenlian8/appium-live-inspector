@@ -20,7 +20,8 @@ With those 2 endpoints, it is possible to build an UI-tool to inspect the app el
 ## Troubleshooting
 Note that some platforms may have settings that prevent screenshots from being taken, for security reason. One such feature is the Android ```FLAG_SECURE``` layout parameter
 
-## Install the dependencies
+## Setup
+### Install the dependencies
 ```bash
 npm install
 ```
