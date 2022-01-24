@@ -1,32 +1,27 @@
 <template>
   <q-layout view="hHh lpr lFf">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar class="bg-grey-14">
         <q-btn
           flat
           dense
-          round
           icon="menu"
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-
-        <breadcrumbs
-          :absolutePath="selectedFolder"
-          @selected="onSelectedFolder"
-        />
-
-        <q-btn
-          flat
-          dense
-          round
-          :icon="listType === 'grid' ? 'format_list_bulleted' : 'border_all'"
-          aria-label="toggle between grid and list modes"
-          @click="toggleListType"
-        />
-
+        <q-input class="bg-lime-3" type="url" filled placeholder="http://" v-model="text" style="min-width: 500px">
+          <template v-slot:append>
+            <q-btn no-caps color="primary" label="/session/" />
+          </template>
+        </q-input>
+        <q-select class="bg-amber-3" v-model="model" :options="options" style="min-width: 400px">
+          <template v-slot:after>
+            <q-btn class="bg-deep-orange-4" icon="update" />
+          </template>
+        </q-select>
       </q-toolbar>
     </q-header>
+
     <!--
     using this: https://forum.quasar-framework.org/topic/3756/best-practice-setting-up-q-scroll-area/5
     -->
