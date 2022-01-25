@@ -28,6 +28,10 @@ contextBridge.exposeInMainWorld(
      //console.log(appiumUrl);
       ipcRenderer.send("getSessionIds", appiumUrl);
     },
+    requestAppium: (appiumUrl) => {
+      // console.log(appiumUrl);
+      ipcRenderer.send("requestAppium", appiumUrl);
+    },
     receive: (channel, func) => {
       let validChannels = ["updateSessionIds",
         "updateImage",

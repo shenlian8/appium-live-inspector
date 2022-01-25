@@ -49,7 +49,10 @@ export default {
       });
     },
     startRequest: function() {
-      //alert(this.sessionId);
+      if (this.appiumUrl.trim() !== '' &&
+            this.sessionId !== '') {
+        window.myApi.requestAppium(this.appiumUrl + '/session/' + this.sessionId);
+      }
     }
   }
 };

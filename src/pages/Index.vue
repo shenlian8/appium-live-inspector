@@ -61,10 +61,13 @@ export default {
   components: {Searchbar}
 }
 window.myApi.receive("generalError", (data) => {
-  console.log(data);
+  // console.log(data);
   Notify.create({
     message: data,
     color: "orange"
   });
+});
+window.myApi.receive("updateImage", (data) => {
+  console.log(data);
 });
 </script>

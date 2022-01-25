@@ -2,6 +2,7 @@ import {app, BrowserWindow, ipcMain, nativeTheme} from 'electron'
 import path from 'path'
 import os from 'os'
 import sessionReader from "./session-reader";
+import appiumReader from "./appium-requester";
 
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform()
@@ -62,6 +63,23 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+// In this file you can include the rest of your app's specific main process
+// code. You can also put them in separate files and import them here.
+ipcMain.on("requestAppium", (event, args) => {
+  appiumReader.requestAppium(args, function (result) {
+      mainWindow.send("updateImage", result);
+    },
+    function(result) {
+      mainWindow.send("updateElementView", result);
+    },
+    function(result) {
+      mainWindow.send("updateTreeView", result);
+    },
+    function(errorMessage) {
+      mainWindow.send("generalError", errorMessage);
+    });
+});
 
 ipcMain.on("getSessionIds", (event, args) => {
   sessionReader.getSessionIds(args,
