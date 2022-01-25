@@ -9,16 +9,7 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-        <q-input class="bg-lime-3" type="url" filled placeholder="http://" v-model="text" style="min-width: 500px">
-          <template v-slot:append>
-            <q-btn no-caps color="primary" label="/session/" />
-          </template>
-        </q-input>
-        <q-select class="bg-amber-3" v-model="model" :options="options" style="min-width: 400px">
-          <template v-slot:after>
-            <q-btn class="bg-deep-orange-4" icon="update" />
-          </template>
-        </q-select>
+        <searchbar></searchbar>
       </q-toolbar>
     </q-header>
 
@@ -64,6 +55,16 @@
 </template>
 
 <script>
-//import { defineComponent } from 'vue';
-
+import Searchbar from "components/SearchBar/SearchBar";
+import { Notify } from 'quasar';
+export default {
+  components: {Searchbar}
+}
+window.myApi.receive("generalError", (data) => {
+  console.log(data);
+  Notify.create({
+    message: data,
+    color: "orange"
+  });
+});
 </script>

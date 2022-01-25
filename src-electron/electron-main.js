@@ -1,6 +1,7 @@
-import { app, BrowserWindow, nativeTheme } from 'electron'
+import {app, BrowserWindow, ipcMain, nativeTheme} from 'electron'
 import path from 'path'
 import os from 'os'
+import sessionReader from "./session-reader";
 
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform()
@@ -61,3 +62,13 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
+ipcMain.on("getSessionIds", (event, args) => {
+  sessionReader.getSessionIds(args,
+    function (result) {
+      mainWindow.send("updateSessionIds", result);
+    },
+    function(errorMessage) {
+      mainWindow.send("generalError", errorMessage);
+    });
+});

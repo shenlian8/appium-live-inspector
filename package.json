@@ -6,6 +6,7 @@
   "author": "shenlian8 <shenlian@gmx.de>",
   "private": true,
   "scripts": {
+    "start": "quasar dev -m electron",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
