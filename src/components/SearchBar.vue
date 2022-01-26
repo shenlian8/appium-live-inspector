@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import {Notify} from "quasar";
 
 export default {
   name: 'Searchbar',
@@ -31,6 +30,14 @@ export default {
   },
   mounted: function() {
     this.appiumUrl = localStorage.appiumUrl;
+    window.myApi.receive("updateSessionIds", (data) => {
+      //console.log(data);
+      this.sessionId = null;
+      this.sessionIds = data;
+      if (this.sessionIds.length > 0) {
+        this.sessionId = data[data.length - 1];
+      }
+    });
   },
   methods: {
     getSessionIds: function() {
@@ -39,14 +46,6 @@ export default {
         localStorage.setItem("appiumUrl", this.appiumUrl);
         window.myApi.getSessionIds(this.appiumUrl);
       }
-      window.myApi.receive("updateSessionIds", (data) => {
-        //console.log(data);
-        this.sessionId = null;
-        this.sessionIds = data;
-        if (this.sessionIds.length > 0) {
-          this.sessionId = data[data.length - 1];
-        }
-      });
     },
     startRequest: function() {
       if (this.appiumUrl.trim() !== '' &&

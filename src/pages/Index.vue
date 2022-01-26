@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh lpr lFf">
     <q-header elevated>
-      <q-toolbar class="bg-grey-14">
+      <q-toolbar class="bg-blue-3">
         <q-btn
           flat
           dense
@@ -30,12 +30,8 @@
           </div>
           <div class="col q-ma-md" style="min-width: 300px">
             <div class="column full-height">
-              <div>aaa</div>
               <q-scroll-area class="col q-pa-sm">
-                <p v-for="n in 15" :key="n">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-                </p>
-                <router-view />
+                <screen-view></screen-view>
               </q-scroll-area>
             </div>
           </div>
@@ -55,10 +51,12 @@
 </template>
 
 <script>
-import Searchbar from "components/SearchBar/SearchBar";
+import Searchbar from "components/SearchBar";
 import { Notify } from 'quasar';
+import ScreenImage from "components/ScreenView";
+import ScreenView from "components/ScreenView";
 export default {
-  components: {Searchbar}
+  components: {ScreenView, Searchbar}
 }
 window.myApi.receive("generalError", (data) => {
   // console.log(data);
@@ -66,8 +64,5 @@ window.myApi.receive("generalError", (data) => {
     message: data,
     color: "orange"
   });
-});
-window.myApi.receive("updateImage", (data) => {
-  console.log(data);
 });
 </script>
