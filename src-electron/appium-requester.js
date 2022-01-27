@@ -277,13 +277,13 @@ const appiumRequester = {
 
     // after element view is finished
     eventEmitter.on('loadElementViewFinish', function (result) {
-      console.dir(result, {depth: null, colors: true})
+      // console.dir(result, {depth: null, colors: true})
       callbackUpdateElementView(result);
     })
 
     // after tree view is finished
     eventEmitter.on('loadTreeVieewFinish', function (result) {
-      console.dir(result, {depth: null, colors: true})
+      // console.dir(result, {depth: null, colors: true})
       callbackUpdateTreeView(result);
     })
 

@@ -58,8 +58,8 @@ export default {
         oneElement = this.elements[index];
         oneElement.left = oneElement.left * imgClientWidth / imgNaturalWidth;
         oneElement.top = oneElement.top * imgClientWidth / imgNaturalWidth;
-        oneElement.width = oneElement.width * imgClientWidth / imgNaturalWidth - 2;
-        oneElement.height = oneElement.height * imgClientWidth / imgNaturalWidth - 2;
+        oneElement.width = oneElement.width * imgClientWidth / imgNaturalWidth;
+        oneElement.height = oneElement.height * imgClientWidth / imgNaturalWidth;
         oneElement.boundStyle = "left:" + oneElement.left + "px;top:" + oneElement.top + "px;width:" + oneElement.width + "px;height:" + oneElement.height + "px;";
       }
     },
