@@ -21,7 +21,7 @@ With those 2 endpoints, it is possible to build an UI-tool to inspect the app el
 ### Preparation
 It is recommended to set the capability `newCommandTimeout` to a high value, e.g. 3600. So you have enough time to inspect the app.
 
-You can set breakpoint in your test case project and start debugging. When the breakpoint is reached and the test case stops, you can inspect the app now.
+You can set the breakpoints in your test case project and start debugging. When the breakpoint is reached and the test case stays, you can inspect the app now.
 ### Start
 ![Search bar](./public/searchbar.png)
 1. Input the URL of the Appium server.
