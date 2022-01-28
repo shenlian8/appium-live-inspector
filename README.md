@@ -2,10 +2,10 @@
 
 An inspector to help debug the Appium tests
 
-## :crystal_ball: Idea
+## :dizzy: Idea
 While debugging the Appium tests, it would be easier when it is possible to inspect the app elements meanwhile.
 
-## How to
+## :crystal_ball: How to
 The Appium server provides 2 endpoints:
 ```bash
 GET /session/:session_id/source
