@@ -2,7 +2,7 @@
 
 An inspector to help debug the Appium tests
 
-## :candle: Idea
+## :crystal_ball: Idea
 While debugging the Appium tests, it would be easier when it is possible to inspect the app elements meanwhile.
 
 ## How to
