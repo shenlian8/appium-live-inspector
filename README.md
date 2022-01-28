@@ -2,7 +2,7 @@
 
 An inspector to help debug the Appium tests
 
-## Idea
+## :candle: Idea
 While debugging the Appium tests, it would be easier when it is possible to inspect the app elements meanwhile.
 
 ## How to
@@ -27,7 +27,7 @@ With those 2 endpoints, it is possible to build an UI-tool to inspect the app el
 ### Element tree view
 
 ### Element properties view
-In the 
+In the
 ## Troubleshooting
 Note that some platforms may have settings that prevent screenshots from being taken, for security reason. One such feature is the Android ```FLAG_SECURE``` layout parameter.
 
