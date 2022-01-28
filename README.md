@@ -17,7 +17,7 @@ GET /session/:session_id/screenshot
 Takes a screenshot of the viewport in a native context (iOS, Android).
 
 With those 2 endpoints, it is possible to build an UI-tool to inspect the app elements while debugging the Appium tests. The only parameter needs to be provided is the session-id of the running Appium test.
-## Usage
+## :footprints: Usage
 ### Preparation
 
 ### Start
@@ -28,13 +28,13 @@ With those 2 endpoints, it is possible to build an UI-tool to inspect the app el
 
 ### Element properties view
 In the
-## Troubleshooting
+## :stethoscope: Troubleshooting
 Note that some platforms may have settings that prevent screenshots from being taken, for security reason. One such feature is the Android ```FLAG_SECURE``` layout parameter.
 
 Only the XML format of the page souce is supported now. If the `useJSONSource` capability is used, the programm can not show the elements.
 
 At the moment it is only tested with `UiAutomator2` and `XCUITest`
-## Setup
+## :hammer_and_wrench: Setup
 ### Install the dependencies
 ```bash
 npm install
