@@ -42,6 +42,9 @@ export default {
   methods: {
     getSessionIds: function() {
       // console.info(this.searchText);
+      this.sessionIds = [];
+      this.sessionId = null;
+
       if (this.appiumUrl.trim() !== '') {
         localStorage.setItem("appiumUrl", this.appiumUrl);
         window.myApi.getSessionIds(this.appiumUrl);

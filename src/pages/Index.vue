@@ -21,10 +21,7 @@
           <div class="col q-ma-md" style="min-width: 300px">
             <div class="column full-height">
               <q-scroll-area class="col q-pa-sm">
-                <p v-for="n in 15" :key="n">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
-                </p>
-                <router-view />
+
               </q-scroll-area>
             </div>
           </div>
