@@ -3,7 +3,7 @@ const https = require("https");
 const http = require("http");
 const parser = require('fast-xml-parser');
 
-const elementList = [];
+let elementList = [];
 let hierarchyInfo = {};
 let elementId = 0;
 
@@ -255,6 +255,11 @@ const appiumRequester = {
                            callbackUpdateElementView,
                            callbackUpdateTreeView,
                            callbackOnError) {
+
+    elementList = [];
+    hierarchyInfo = {};
+    elementId = 0;
+
     // start first loading the screenshot. We need the image first be rendered.
     // after render the image, we know the width of the image and the elements can be scaled to fit the image.
     getImage(appiumUrl);

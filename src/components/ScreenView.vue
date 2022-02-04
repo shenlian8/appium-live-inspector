@@ -9,7 +9,7 @@
          :id="element.id"
          :key="element.id"
          :style="element.boundStyle"
-         v-on:click="showAttr"
+         v-on:click="triggerElementSelected"
          class="element-frame">
     </div>
   </div>
@@ -29,6 +29,9 @@
 }
 </style>
 <script>
+import mitt from 'mitt'
+window.mitt = window.mitt || new mitt()
+
 const base64Jpeg = {"sessionId":"","value":"R0lGODlhAQABAAAAACwAAAAAAQABAAA="};
 
 export default {
@@ -63,8 +66,8 @@ export default {
         oneElement.boundStyle = "left:" + oneElement.left + "px;top:" + oneElement.top + "px;width:" + oneElement.width + "px;height:" + oneElement.height + "px;";
       }
     },
-    showAttr: function(event) {
-      this.$root.elementClicked = event.currentTarget.id;
+    triggerElementSelected: function(event) {
+      window.mitt.emit("Element selected", event.currentTarget.id);
     },
     markElement: function(id) {
       if(this.selectedId != null) {
@@ -91,13 +94,11 @@ export default {
 
       this.oriElements = data;
       this.renderElements();
+    });
 
-      // root.$refs.attrTable.oriElements = data;
+    window.mitt.on('Element selected', (elementId) => {
+      this.markElement(elementId);
     });
   }
 }
 </script>
-
-<style scoped>
-
-</style>

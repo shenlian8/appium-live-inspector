@@ -28,7 +28,7 @@
           <div class="col q-ma-md" style="min-width: 300px">
             <div class="column full-height">
               <q-scroll-area class="col q-pa-sm">
-                <screen-view></screen-view>
+                <screen-view ref="screenView"></screen-view>
               </q-scroll-area>
             </div>
           </div>
@@ -50,13 +50,17 @@ import { Notify } from 'quasar';
 import ScreenImage from "components/ScreenView";
 import ScreenView from "components/ScreenView";
 export default {
-  components: {ScreenView, Searchbar}
+  components: {ScreenView, Searchbar},
+
+  created: function() {
+    window.myApi.receive("generalError", (data) => {
+      // console.log(data);
+      Notify.create({
+        message: data,
+        color: "orange"
+      });
+    });
+  }
 }
-window.myApi.receive("generalError", (data) => {
-  // console.log(data);
-  Notify.create({
-    message: data,
-    color: "orange"
-  });
-});
+
 </script>
