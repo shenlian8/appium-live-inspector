@@ -27,16 +27,12 @@
           </div>
           <div class="col q-ma-md" style="min-width: 300px">
             <div class="column full-height">
-              <q-scroll-area class="col q-pa-sm">
-                <screen-view ref="screenView"></screen-view>
-              </q-scroll-area>
+              <screen-view />
             </div>
           </div>
           <div class="col q-ma-md" style="min-width: 300px">
             <div class="column full-height">
-              <q-scroll-area class="col q-pa-sm">
-
-              </q-scroll-area>
+              <attributeview />
             </div>
           </div>
         </q-page>
@@ -49,8 +45,9 @@ import Searchbar from "components/SearchBar";
 import { Notify } from 'quasar';
 import ScreenImage from "components/ScreenView";
 import ScreenView from "components/ScreenView";
+import Attributeview from "components/AttributeView";
 export default {
-  components: {ScreenView, Searchbar},
+  components: {Attributeview, ScreenView, Searchbar},
 
   created: function() {
     window.myApi.receive("generalError", (data) => {

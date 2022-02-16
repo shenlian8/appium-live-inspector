@@ -1,18 +1,20 @@
 <template>
-  <img id="screen-image" :src="'data:image/png;base64, ' + imgData.value" style="width: 100%; object-fit: scale-down;" alt=""/>
-  <div id="element-overlay" style="width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;">
-    <div v-for="element in elements"
-         :id="element.id"
-         :key="element.id"
-         :style="element.boundStyle"
-         v-on:click="triggerElementSelected"
-         class="element-frame">
+  <q-scroll-area class="col q-pa-sm">
+    <img id="screen-image" :src="'data:image/png;base64, ' + imgData.value" style="width: 100%; object-fit: scale-down;" alt=""/>
+    <div id="element-overlay" style="width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;">
+      <div v-for="element in elements"
+           :id="element.id"
+           :key="element.id"
+           :style="element.boundStyle"
+           v-on:click="triggerElementSelected"
+           class="element-frame">
+      </div>
     </div>
-  </div>
+  </q-scroll-area>
 </template>
 <style>
 .element-frame {
