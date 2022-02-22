@@ -91,9 +91,6 @@ export default {
     });
 
     window.myApi.receive("updateElementView", (data) => {
-      // console.log(data);
-      this.$root.elementClicked = null;
-
       this.oriElements = data;
       this.renderElements();
     });
