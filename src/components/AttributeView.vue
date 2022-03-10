@@ -15,7 +15,28 @@
       :rows-per-page-options="[0]"
       wrap-cells
       style="width: 100%"
-    />
+    >
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td auto-width>
+            <q-btn size="8px" round @click="props.expand = !props.expand" icon="content_copy" />
+          </q-td>
+          <q-td auto-width>
+            <q-btn size="8px" round @click="props.expand = !props.expand" icon="drag_handle" />
+          </q-td>
+          <q-td auto-width>
+            <q-btn size="8px" round @click="props.expand = !props.expand" icon="save_alt" />
+          </q-td>
+          <q-td
+            v-for="col in props.cols"
+            :key="col.name"
+            :props="props"
+          >
+            {{ col.value }}
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
   </q-scroll-area>
 </template>
 
