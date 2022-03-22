@@ -1,10 +1,10 @@
 <template>
   <q-input
-    v-model="xcodeText"
+    v-model="xpathText"
     filled
     readonly
     type="textarea"
-    rows="4"
+    rows="3"
   />
   <q-scroll-area class="col q-pa-sm">
     <q-table
@@ -18,14 +18,14 @@
     >
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td auto-width>
-            <q-btn size="8px" round @click="props.expand = !props.expand" icon="content_copy" />
+          <q-td>
+              <q-btn size="8px" round @click="copyAttributeValue(props.row)" icon="content_copy" />
           </q-td>
-          <q-td auto-width>
-            <q-btn size="8px" round @click="props.expand = !props.expand" icon="drag_handle" />
+          <q-td>
+            <q-btn size="8px" round @click="setEqualText(props.row)" icon="drag_handle" />
           </q-td>
-          <q-td auto-width>
-            <q-btn size="8px" round @click="props.expand = !props.expand" icon="save_alt" />
+          <q-td>
+            <q-btn size="8px" round @click="setContainText(props.row)" icon="save_alt" />
           </q-td>
           <q-td
             v-for="col in props.cols"
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import {copyToClipboard, Notify} from 'quasar'
+
 const columns = [
   { name: 'key', label: 'Key', style: 'width: 100px'},
   { name: 'value', label: 'Value'}
@@ -55,7 +57,7 @@ export default {
   },
   data() {
     return {
-      xcodeText: "",
+      xpathText: "",
       attrs: []
     }
   },
@@ -64,7 +66,41 @@ export default {
       if (this.oriElements[id] != null) {
         this.attrs = this.oriElements[id].attr;
       }
-    }
+    },
+    copyString: function(stringValue) {
+      copyToClipboard(stringValue)
+        .then(() => {
+          Notify.create({
+            message: "Copied",
+            color: "green"
+          });
+        })
+        .catch(() => {
+          Notify.create({
+            message: "Copy failed",
+            color: "orange"
+          });
+        })
+    },
+    setEqualText: function(row) {
+      // console.log(scope);
+      // console.log("//*[@" + scope.row.key + "='" + scope.row.value + "']");
+      this.xpathText = "//*[@" + row.key + "='" + row.value + "']"
+      this.copyString(this.xpathText);
+    },
+    setContainText: function(row) {
+      // console.log(scope);
+      let valueString = row.value;
+      if(row.key === "resource-id") {
+        valueString = valueString.replace(/^(.*):id/g, ':id');
+      }
+      this.xpathText = "//*[contains(@" + row.key + ",'" + valueString + "')]"
+      this.copyString(this.xpathText);
+    },
+    copyAttributeValue: function(row) {
+      this.xpathText = row.value;
+      this.copyString(this.xpathText);
+    },
   },
   created: function() {
     window.myApi.receive("updateElementView", (data) => {
