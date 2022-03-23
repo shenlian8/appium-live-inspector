@@ -20,9 +20,7 @@
         <q-page class="row no-scroll no-wrap">
           <div class="col q-ma-md" style="min-width: 300px">
             <div class="column full-height">
-              <q-scroll-area class="col q-pa-sm">
-
-              </q-scroll-area>
+              <treeview />
             </div>
           </div>
           <div class="col q-ma-md" style="min-width: 300px">
@@ -46,8 +44,9 @@ import { Notify } from 'quasar';
 import ScreenImage from "components/ScreenView";
 import ScreenView from "components/ScreenView";
 import Attributeview from "components/AttributeView";
+import Treeview from "components/TreeView";
 export default {
-  components: {Attributeview, ScreenView, Searchbar},
+  components: {Treeview, Attributeview, ScreenView, Searchbar},
 
   created: function() {
     window.myApi.receive("generalError", (data) => {
