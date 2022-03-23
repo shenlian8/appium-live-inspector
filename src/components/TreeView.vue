@@ -7,7 +7,9 @@
       default-expand-all
       :duration="0"
       ref="tree"
-      :selected="selected"
+      v-model:selected="selected"
+      selected-color="green"
+      no-selection-unset
       @update:selected="triggerNodeSelected"
     />
   </q-scroll-area>
@@ -18,15 +20,19 @@ import { ref } from 'vue'
 
 export default {
   name: 'Treeview',
+  setup () {
+    return {
+      selected: ref(null)
+    }
+  },
   data() {
     return {
-      treeData: [],
-      selected: []
+      treeData: []
     }
   },
   methods: {
-    triggerNodeSelected: function(event) {
-      window.mitt.emit("Element selected", event);
+    triggerNodeSelected: function() {
+      window.mitt.emit("Element selected", this.selected);
     },
   },
   created: function() {
@@ -36,7 +42,7 @@ export default {
     });
 
     window.mitt.on('Element selected', (elementId) => {
-
+      //this.selected = ;
     });
   }
     };
