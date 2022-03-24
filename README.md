@@ -56,7 +56,7 @@ Only the XML format of the page souce is supported now. If the `useJSONSource` c
 At the moment it is only tested with `UiAutomator2` and `XCUITest`
 ## :hammer_and_wrench: Setup
 ### Release binary
-The binary releases will be added later.
+The binary releases can be found [here](https://github.com/shenlian8/appium-live-inspector/releases).
 ### Install the dependencies
 ```bash
 npm install
