@@ -18,19 +18,20 @@
     >
       <template v-slot:body="props">
         <q-tr :props="props">
-          <q-td>
-              <q-btn size="8px" round @click="copyAttributeValue(props.row)" icon="content_copy" />
+          <q-td style="max-width: 10px" headerStyle="max-width: 9px">
+            <q-btn size="8px" round @click="copyAttributeValue(props.row)" icon="content_copy" />
           </q-td>
-          <q-td>
+          <q-td style="max-width: 10px" headerStyle="max-width: 9px">
             <q-btn size="8px" round @click="setEqualText(props.row)" icon="drag_handle" />
           </q-td>
-          <q-td>
+          <q-td style="max-width: 10px" headerStyle="max-width: 9px">
             <q-btn size="8px" round @click="setContainText(props.row)" icon="save_alt" />
           </q-td>
           <q-td
             v-for="col in props.cols"
             :key="col.name"
             :props="props"
+            auto-width
           >
             {{ col.value }}
           </q-td>
@@ -44,7 +45,7 @@
 import {copyToClipboard, Notify} from 'quasar'
 
 const columns = [
-  { name: 'key', label: 'Key', style: 'width: 100px'},
+  { name: 'key', label: 'Key', style: 'max-width: 100px'},
   { name: 'value', label: 'Value'}
 ]
 
