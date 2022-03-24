@@ -42,7 +42,7 @@ export default {
     });
 
     window.mitt.on('Element selected', (elementId) => {
-      //this.selected = ;
+      this.selected = Number(elementId);
     });
   }
     };
