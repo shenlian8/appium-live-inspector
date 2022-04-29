@@ -1,6 +1,6 @@
 {
   "name": "appium-live-inspector",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "An inspector to help debug the Appium tests",
   "productName": "Appium Live Inspector",
   "author": "shenlian8 <shenlian@gmx.de>",

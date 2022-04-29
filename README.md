@@ -40,6 +40,14 @@ Note: when a bigger element overlaps a smaller element, it is not possible to se
 ### Element tree view
 On the left is the element tree view. All the elements are listed here as tree. When the element is clicked, the element will be marked and all the attributes of the element
 will be shown in the element attributes view.
+
+In case there are some elements overlap the others. The user can select which elements are shown.
+![Select element to show](./public/treetick.png)
+1. Activate the selection mode
+2. Select the elements which should be shown
+3. Apply the selection
+
+Only the selected elements (and their parents) will be shown in the screen view.
 ### Element attributes view
 The attribute view in on the right side. Here are all the attributes of the selected element listed. The icons on the left side provide
 the following functions:
@@ -51,7 +59,7 @@ the following functions:
 ## :stethoscope: Troubleshooting
 Note that some platforms may have settings that prevent screenshots from being taken, for security reason. One such feature is the Android ```FLAG_SECURE``` layout parameter.
 
-Only the XML format of the page souce is supported now. If the `useJSONSource` capability is used, the programm can not show the elements.
+Only the XML format of the page source is supported now. If the `useJSONSource` capability is used, the programm can not show the elements.
 
 At the moment it is only tested with `UiAutomator2` and `XCUITest`
 ## :hammer_and_wrench: Setup
