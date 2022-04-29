@@ -100,7 +100,7 @@ const convertXmlToJson = function(xmlData) {
 
   return jsonObj;
 };
-const getElementView = function(node, treeNode, nodeName) {
+const getElementView = function(node, treeNode, nodeName, parentId) {
 
   let key;
   treeNode.label = nodeName;
@@ -175,6 +175,7 @@ const getElementView = function(node, treeNode, nodeName) {
   elementList.push(oneAttr);
 
   treeNode.id = elementId;
+  treeNode.parentId = parentId;
   elementId ++;
 
   const children = [];
@@ -184,11 +185,11 @@ const getElementView = function(node, treeNode, nodeName) {
       if(node[key].length > 0) {
         for(let index = 0; index < node[key].length; index ++) {
           children.push({});
-          getElementView(node[key][index], children[children.length - 1], key);
+          getElementView(node[key][index], children[children.length - 1], key, treeNode.id);
         }
       } else {
         children.push({});
-        getElementView(node[key], children[children.length - 1], key);
+        getElementView(node[key], children[children.length - 1], key, treeNode.id);
       }
     }
   }
@@ -224,7 +225,7 @@ const readPageSource = function(res) {
 
         treeView = [];
         treeData = {};
-        getElementView(hierarchyData, treeData, hierarchyInfo.class);
+        getElementView(hierarchyData, treeData, hierarchyInfo.class, null);
         treeView.push(treeData);
       }
 
@@ -236,7 +237,7 @@ const readPageSource = function(res) {
         treeView = [];
         treeData = {};
 
-        getElementView(hierarchyData, treeData, hierarchyInfo.type);
+        getElementView(hierarchyData, treeData, hierarchyInfo.type, null);
         treeView.push(treeData);
       }
 

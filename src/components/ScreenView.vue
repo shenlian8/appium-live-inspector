@@ -35,6 +35,7 @@ import mitt from 'mitt'
 window.mitt = window.mitt || new mitt()
 
 const base64Jpeg = {"sessionId":"","value":"R0lGODlhAQABAAAAACwAAAAAAQABAAA="};
+let localTickedList = [];
 
 export default {
   name: "ScreenView",
@@ -61,11 +62,19 @@ export default {
       for(let index = 0; index < this.elements.length; index ++) {
         let oneElement;
         oneElement = this.elements[index];
-        oneElement.left = oneElement.left * imgClientWidth / imgNaturalWidth;
-        oneElement.top = oneElement.top * imgClientWidth / imgNaturalWidth;
-        oneElement.width = oneElement.width * imgClientWidth / imgNaturalWidth;
-        oneElement.height = oneElement.height * imgClientWidth / imgNaturalWidth;
-        oneElement.boundStyle = "left:" + oneElement.left + "px;top:" + oneElement.top + "px;width:" + oneElement.width + "px;height:" + oneElement.height + "px;";
+        if(localTickedList.length === 0 || localTickedList.includes(oneElement.id)) {
+          oneElement.left = oneElement.left * imgClientWidth / imgNaturalWidth;
+          oneElement.top = oneElement.top * imgClientWidth / imgNaturalWidth;
+          oneElement.width = oneElement.width * imgClientWidth / imgNaturalWidth;
+          oneElement.height = oneElement.height * imgClientWidth / imgNaturalWidth;
+          oneElement.boundStyle = "left:" + oneElement.left + "px;top:" + oneElement.top + "px;width:" + oneElement.width + "px;height:" + oneElement.height + "px;";
+        } else {
+          oneElement.left = 0;
+          oneElement.top = 0;
+          oneElement.width = 0;
+          oneElement.height = 0;
+          oneElement.boundStyle = "";
+        }
       }
     },
     triggerElementSelected: function(event) {
@@ -91,12 +100,19 @@ export default {
     });
 
     window.myApi.receive("updateElementView", (data) => {
+      localTickedList = [];
       this.oriElements = data;
       this.renderElements();
     });
 
     window.mitt.on('Element selected', (elementId) => {
       this.markElement(elementId);
+    });
+
+    window.mitt.on('Tree ticked', (allTickedList) => {
+      localTickedList = allTickedList;
+      this.renderElements();
+      localTickedList = [];
     });
   }
 }
