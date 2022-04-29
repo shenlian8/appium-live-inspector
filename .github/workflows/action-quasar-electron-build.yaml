@@ -1,4 +1,3 @@
-# config file from https://github.com/Qoyyuum/quasar-devops
 name: Quasar Electron Build and Release
 
 on:
