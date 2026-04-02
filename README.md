@@ -23,7 +23,7 @@ It is recommended to set the capability `newCommandTimeout` to a high value, e.g
 
 You can set the breakpoints in your test case project and start debugging. When the breakpoint is reached and the test case stays, you can inspect the app now.
 ### Start
-![Search bar](./public/searchbar.png)
+
 1. Input the URL of the Appium server.
 2. Input the session id manually. This can be found directly in Appium server output or from the driver object in the test case project.
 3. Click the refresh button to load the screenshot and page source of the actual screen on the mobile phone.
