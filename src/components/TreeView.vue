@@ -90,6 +90,11 @@ export default {
       this.$nextTick(()=>{this.$refs.tree.expandAll()})
     });
 
+    window.mitt.on('Tree view data', (data) => {
+      this.treeData = data;
+      this.$nextTick(()=>{this.$refs.tree.expandAll()})
+    });
+
     window.mitt.on('Element selected', (elementId) => {
       this.selected = Number(elementId);
     });

@@ -24,20 +24,17 @@ const {
 // the ipcRenderer without exposing the entire object
 contextBridge.exposeInMainWorld(
   "myApi", {
-    getSessionIds: (appiumUrl) => {
-     //console.log(appiumUrl);
-      ipcRenderer.send("getSessionIds", appiumUrl);
-    },
     requestAppium: (appiumUrl) => {
       // console.log(appiumUrl);
       ipcRenderer.send("requestAppium", appiumUrl);
     },
     receive: (channel, func) => {
-      let validChannels = ["updateSessionIds",
+      let validChannels = [
         "updateImage",
         "updateElementView",
         "updateTreeView",
-        "generalError"];
+        "generalError"
+      ];
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
         ipcRenderer.on(channel, (event, ...args) => func(...args));
