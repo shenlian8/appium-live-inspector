@@ -108,6 +108,12 @@ export default {
       this.oriElements = data;
     });
 
+    window.mitt.on('Element view data', (data) => {
+      this.oriElements = data;
+      this.attrs = [];
+      this.xpathText = "";
+    });
+
     window.mitt.on('Element selected', (elementId) => {
       this.updateAttrs(elementId);
     });

@@ -39,12 +39,11 @@
 </template>
 
 <script>
-import Searchbar from "components/SearchBar";
-import { Notify } from 'quasar';
-import ScreenImage from "components/ScreenView";
-import ScreenView from "components/ScreenView";
-import Attributeview from "components/AttributeView";
-import Treeview from "components/TreeView";
+import Searchbar from '../components/SearchBar.vue'
+import { Notify } from 'quasar'
+import ScreenView from '../components/ScreenView.vue'
+import Attributeview from '../components/AttributeView.vue'
+import Treeview from '../components/TreeView.vue'
 export default {
   components: {Treeview, Attributeview, ScreenView, Searchbar},
 

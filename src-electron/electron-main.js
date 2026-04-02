@@ -1,7 +1,7 @@
 import {app, BrowserWindow, ipcMain, nativeTheme} from 'electron'
 import path from 'path'
+import { fileURLToPath, pathToFileURL } from 'url'
 import os from 'os'
-import sessionReader from "./session-reader";
 import appiumReader from "./appium-requester";
 
 // needed in case process is undefined under Linux
@@ -13,6 +13,9 @@ try {
   }
 }
 catch (_) { }
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 let mainWindow
 
@@ -28,11 +31,23 @@ function createWindow () {
     webPreferences: {
       contextIsolation: true,
       // More info: /quasar-cli/developing-electron-apps/electron-preload-script
-      preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD)
+      preload: process.env.QUASAR_ELECTRON_PRELOAD
+        ? path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD)
+        : path.resolve(__dirname, 'preload/electron-preload.cjs')
     }
   })
 
-  mainWindow.loadURL(process.env.APP_URL)
+  const appUrl = process.env.APP_URL
+  const fallbackUrl = pathToFileURL(path.join(__dirname, 'index.html')).href
+  if (!appUrl) {
+    console.error('APP_URL is not set. Falling back to local index.html')
+  }
+
+  try {
+    mainWindow.loadURL(appUrl || fallbackUrl)
+  } catch (err) {
+    console.error('Failed to load app URL:', err)
+  }
 
   if (process.env.DEBUGGING) {
     // if on DEV or Production with debug enabled
@@ -75,16 +90,6 @@ ipcMain.on("requestAppium", (event, args) => {
     },
     function(result) {
       mainWindow.send("updateTreeView", result);
-    },
-    function(errorMessage) {
-      mainWindow.send("generalError", errorMessage);
-    });
-});
-
-ipcMain.on("getSessionIds", (event, args) => {
-  sessionReader.getSessionIds(args,
-    function (result) {
-      mainWindow.send("updateSessionIds", result);
     },
     function(errorMessage) {
       mainWindow.send("generalError", errorMessage);
